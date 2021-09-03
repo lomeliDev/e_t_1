@@ -1,6 +1,6 @@
 {
   "name": "atm-machine",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ATM-Machine",
   "main": "main.js",
   "homepage": "./",
@@ -21,7 +21,9 @@
     "make:linux": "electron-builder --linux",
     "make:macos": "electron-builder --mac",
     "make:win": "electron-builder --win --x64",
-    "deploy:win": "electron-builder build --linux --win --x64 --publish always"
+    "deploy:test": "electron-builder build --linux --publish always",
+    "builder": "electron-builder build --mac --linux --win --x64 --publish never",
+    "deploy": "electron-builder build --linux --win --x64 --publish always"
   },
   "keywords": [],
   "author": "ATM-Machine <contact@atm-machine.io>",
