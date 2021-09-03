@@ -5,9 +5,10 @@ const { ipcRenderer } = require('electron');
 function App() {
   const [ports, setports] = useState([]);
   const [version, setversion] = useState("");
-  const notification = document.getElementById('notification');
-  const message = document.getElementById('message');
-  const restartButton = document.getElementById('restart-button');
+  const [message, setmessage] = useState("");
+  const [notification, setnotification] = useState("hidden");
+  const [restartButton, setrestartButton] = useState("hidden");
+
 
   useEffect(() => {
     window.version(setversion)
@@ -22,19 +23,19 @@ function App() {
 
   ipcRenderer.on('update_available', () => {
     ipcRenderer.removeAllListeners('update_available');
-    message.innerText = 'A new update is available. Downloading now...';
-    notification.classList.remove('hidden');
+    setnotification('');
+    setmessage('A new update is available. Downloading now...');
   });
 
   ipcRenderer.on('update_downloaded', () => {
     ipcRenderer.removeAllListeners('update_downloaded');
-    message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-    restartButton.classList.remove('hidden');
-    notification.classList.remove('hidden');
+    setnotification('');
+    setrestartButton('');
+    setmessage('Update Downloaded. It will be installed on restart. Restart now?');
   });
 
   const closeNotification = () => {
-    notification.classList.add('hidden');
+    setnotification('hidden');
   }
 
   const restartApp = () => {
@@ -51,15 +52,13 @@ function App() {
       <p>
         {JSON.stringify(ports)}
       </p>
-
       <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
-
-      <div id="notification" className="hidden">
-        <p id="message"></p>
+      <div id="notification" className={`${notification}`}>
+        <p id="message">{message}</p>
         <button id="close-button" onClick={() => closeNotification()}>
           Close
         </button>
-        <button id="restart-button" onClick={() => restartApp()} className="hidden">
+        <button id="restart-button" onClick={() => restartApp()} className={`${restartButton}`}>
           Restart
         </button>
       </div>
