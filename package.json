@@ -24,7 +24,7 @@
     "deploy:win": "electron-builder build --linux --win --x64 --publish always"
   },
   "keywords": [],
-  "author": "miguel@lomeli.io",
+  "author": "ATM-Machine <contact@atm-machine.io>",
   "license": "MIT",
   "build": {
     "productName": "ATM-Machine",
