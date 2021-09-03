@@ -1,6 +1,6 @@
 {
   "name": "atm-machine",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ATM-Machine",
   "main": "main.js",
   "homepage": "./",
@@ -21,7 +21,7 @@
     "make:linux": "electron-builder --linux",
     "make:macos": "electron-builder --mac",
     "make:win": "electron-builder --win --x64",
-    "deploy:win": "electron-builder build --win --x64 --publish always"
+    "deploy:win": "electron-builder build --linux --win --x64 --publish always"
   },
   "keywords": [],
   "author": "miguel@lomeli.io",
