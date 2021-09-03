@@ -46,7 +46,7 @@ function App() {
   return (
     <>
       <div>app {version}</div><p>&nbsp;</p>
-      <div onClick={() => ListDevicesA0()}>List Devices</div><p>&nbsp;</p>
+      <div onClick={() => ListDevicesA0()}>List Devices 2</div><p>&nbsp;</p>
       <p>&nbsp;</p>
       <p>
         {JSON.stringify(ports)}
