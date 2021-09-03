@@ -5,6 +5,7 @@ const log = require('electron-log');
 const isDev = !app.isPackaged;
 let mainWindow = null;
 const argKiosk = app.commandLine.getSwitchValue("kiosk") !== '' ? parseFloat(app.commandLine.getSwitchValue("kiosk")) : 0;
+const argCursor = app.commandLine.getSwitchValue("cursor") !== '' ? parseFloat(app.commandLine.getSwitchValue("cursor")) : 0;
 
 // configure logging
 autoUpdater.logger = log;
@@ -70,6 +71,13 @@ function createWindow() {
 
     if (isDev) {
         mainWindow.webContents.openDevTools();
+    }
+
+    if (argCursor === 1) {
+        mainWindow.webContents.on('dom-ready', (event) => {
+            let css = '* { cursor: none !important; }';
+            mainWindow.webContents.insertCSS(css);
+        });
     }
 
     mainWindow.once('ready-to-show', () => {
